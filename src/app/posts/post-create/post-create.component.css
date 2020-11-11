@@ -1,0 +1,19 @@
+mat-form-field,
+textarea {
+  width: 100%;
+}
+mat-spinner{
+  margin: auto;
+}
+
+input[type="file"]{
+  visibility: hidden;
+}
+
+.image-previev{
+  height: 5rem;
+  margin: 1rem 0;
+}
+.image-previev img{
+  height: 100%;
+}
