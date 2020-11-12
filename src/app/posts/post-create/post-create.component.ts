@@ -56,6 +56,7 @@ ngOnInit(){
 else{
   this.mode='create';
   this.postId=null;
+  
 }
     })
   }
