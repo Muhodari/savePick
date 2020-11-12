@@ -1,15 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { AuthData } from './auth-data.model';
 
 @Injectable({providedIn: 'root'})
 export class AuthService{
 
     token:string;
+    authStatusListener=new Subject();
     constructor(private http:HttpClient){}
 
 getToken(){
     return this.token;
+}
+
+getAuthStatusListener(){
+    return this.authStatusListener.asObservable();
 }
 
  createUser(email:string,password:string){
