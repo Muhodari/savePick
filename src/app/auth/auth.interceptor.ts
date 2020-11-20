@@ -17,6 +17,6 @@ import {
         headers: req.headers.set("Authorization", "Bearer " + authToken)
       });
       return next.handle(authRequest);
-    }
+     }
   }
   
