@@ -26,7 +26,8 @@ constructor(private http:HttpClient,private router:Router){}
         title:post.title,
        content:post.content,
        id:post._id,
-       imagePath:post.imagePath
+       imagePath:post.imagePath,
+       creator:post.creator
       }
      }),
      maxPosts:postData.maxPosts
@@ -35,6 +36,7 @@ constructor(private http:HttpClient,private router:Router){}
      }))
 
 .subscribe(transformedPostData=>{
+  // console.log(transformedPostData);
      this.posts=transformedPostData.posts;
     this.postsUpdated.next({
       posts:[...this.posts],
@@ -44,7 +46,13 @@ constructor(private http:HttpClient,private router:Router){}
   }
 
 getPost(id:string){
-  return this.http.get<{_id:string,title:string,content:string,imagePath:string}>('http://localhost:3000/api/posts/'+id);
+  return this.http.get<{
+    _id:string;
+    title:string;
+    content:string;
+    imagePath:string;
+    creator:string;
+  }>('http://localhost:3000/api/posts/'+id);
 }
 
   getPostUpdateListener() {
@@ -63,7 +71,8 @@ getPost(id:string){
         id:responseData.post.id,
         title:title,
         content:content,
-      imagePath:responseData.post.imagePath
+      imagePath:responseData.post.imagePath,
+      creator:null
       }
       this.router.navigate(["./"])
     }
@@ -74,7 +83,6 @@ getPost(id:string){
 
 //  delete request
 deletePost(postId:string){
-
  return this.http.delete('http://localhost:3000/api/posts/'+postId)
 }
 
@@ -94,7 +102,8 @@ else{
      id:id,
     title:title,
     content:content,
-    imagePath:image
+    imagePath:image,
+    creator:null
   };
 }
 this.http.put('http://localhost:3000/api/posts/'+id,postData).subscribe((response)=>{
