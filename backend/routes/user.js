@@ -42,9 +42,12 @@ router.post("/login", (req, res, next) => {
                 return res.status(401).json({ message: "user not found" });
 
             }
-            const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id }, 'secret_this_should_be_longer', { expiresIn: '1h' });
-            //  console.log(token);
-            res.status(201).json({ token: token });
+            const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id },
+                'secret_this_should_be_longer', { expiresIn: '1h' });
+            res.status(201).json({
+                token: token,
+                expiresIn: 3600
+            });
 
         })
         .catch(err => {
