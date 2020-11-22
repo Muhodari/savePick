@@ -5,6 +5,7 @@ const postRoutes = require('./routes/posts')
 const userRoutes = require('./routes/user');
 
 const mongoose = require('mongoose')
+    //mongo "mongodb+srv://cluster0.wgves.mongodb.net/<dbname>"--username muhodari
 
 mongoose.connect('mongodb://localhost:27017/SavePic', {
     useNewUrlParser: true,

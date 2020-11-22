@@ -43,9 +43,11 @@ router.post("", checkAuth, multer({ storage: storage }).single('image'), (req, r
             post: {
                 ...createdPost,
                 id: createdPost._id
-
             }
         });
+    }).catch(error => {
+
+        res.status(500).json({ message: "creating a post failed" })
     });
 });
 
@@ -71,15 +73,23 @@ router.get("", (req, res, next) => {
                 maxPosts: count
             });
         })
+        .catch(error => {
+
+            res.status(500).json({ message: "fetching posts failed" })
+        })
 });
 
 
 router.get('/:id', (req, res, next) => {
     Post.findById(req.params.id).then(post => {
-        if (post) {} else {
-            res.status(404).json({ message: " post not found!" })
-        }
-    })
+            if (post) {} else {
+                res.status(404).json({ message: " post not found!" })
+            }
+        })
+        .catch(error => {
+
+            res.status(500).json({ message: "fetching post failed" })
+        });
 })
 
 
@@ -87,7 +97,6 @@ router.get('/:id', (req, res, next) => {
 router.put('/:id', checkAuth, multer({ storage: storage }).single('image'), (req, res, next) => {
     console.log(req.file);
     let imagePath = req.body.imagePath;
-
     if (req.file) {
         const url = req.protocol + '://' + req.get("host");
         imagePath = url + "/images/" + req.file.filename
@@ -99,7 +108,6 @@ router.put('/:id', checkAuth, multer({ storage: storage }).single('image'), (req
         imagePath: imagePath,
         creator: req.userData.userId
     })
-
     Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post).then(result => {
 
         if (result.nModified > 0) {
@@ -108,7 +116,10 @@ router.put('/:id', checkAuth, multer({ storage: storage }).single('image'), (req
             res.status(401).json({ message: "not Authorized" });
         }
 
-    })
+    }).catch(error => {
+
+        res.status(500).json({ message: "updating post failed" })
+    });
 })
 
 
@@ -119,8 +130,9 @@ router.delete("/:id", checkAuth, (req, res, next) => {
         } else {
             res.status(401).json({ message: "not Authorized" });
         }
+    }).catch(error => {
 
-
+        res.status(500).json({ message: "deleting post failed" })
     })
 })
 
