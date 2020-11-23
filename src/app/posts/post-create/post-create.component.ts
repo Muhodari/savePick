@@ -19,7 +19,7 @@ export class PostCreateComponent implements OnInit,OnDestroy {
   isLoading=false;
   post:Post;
   form:FormGroup;
-  private mode='create';
+  private mode="create";
   private postId:string;
   imagePreview:string;
   private authStastusSubs:Subscription;
@@ -42,8 +42,8 @@ ngOnInit(){
 
   this.route.paramMap.subscribe((paramMap:ParamMap)=>{
   if(paramMap.has('postId')){
-  this.mode='edit';
-  this.postId=paramMap.get('postId');
+  this.mode="edit";
+  this.postId=paramMap.get("postId");
   //  this.isLoading=true;
    this.postsService.getPost(this.postId).subscribe(postData=>{
     //  this.isLoading=false;
@@ -83,6 +83,11 @@ this.imagePreview=reader.result as string;
 reader.readAsDataURL(file);
 
   }
+
+
+
+
+
 
 
   onSavePost() {
