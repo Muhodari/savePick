@@ -1,16 +1,19 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { from, Subject } from 'rxjs';
 import { Post } from './post.model';
 import {map} from 'rxjs/operators'
-import { title } from 'process';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { Router } from '@angular/router';
-import { IfStmt } from '@angular/compiler';
+import {environment} from '../../environments/environment';
+
+
+const BACKEND_URL=environment.apiUrl+"/posts";
 
 @Injectable({providedIn: 'root'})
+
 export class PostsService {
   private posts: Post[] = [];
+
   private postsUpdated = new Subject<{posts:Post[],postCount:number}>();
 
 
@@ -19,7 +22,7 @@ constructor(private http:HttpClient,private router:Router){}
 
   getPosts(postsPerPage:number,currentPage:number) {
     const queryParams=`?pagesize=${postsPerPage}&page=${currentPage}`;
-   this.http.get<{message:string,posts:any,maxPosts:number}>('http://localhost:3000/api/posts'+queryParams)
+   this.http.get<{message:string,posts:any,maxPosts:number}>(BACKEND_URL+queryParams)
    .pipe(map((postData)=>{
      return{posts:postData.posts.map(post=>{
      return{ 
@@ -52,7 +55,7 @@ getPost(id:string){
     content:string;
     imagePath:string;
     creator:string;
-  }>('http://localhost:3000/api/posts/'+id);
+  }>(BACKEND_URL+"/"+id);
 }
 
   getPostUpdateListener() {
@@ -64,7 +67,7 @@ getPost(id:string){
    postData.append('title',title);
    postData.append('content',content);
    postData.append('image',image,title);
-    this.http.post<{message:string,post:Post}>('http://localhost:3000/api/posts',postData)
+    this.http.post<{message:string,post:Post}>(BACKEND_URL,postData)
     .subscribe((responseData)=>{
       //console.log(responseData.message);
       const post:Post={
@@ -83,7 +86,7 @@ getPost(id:string){
 
 //  delete request
 deletePost(postId:string){
- return this.http.delete('http://localhost:3000/api/posts/'+postId)
+ return this.http.delete(BACKEND_URL+"/"+postId)
 }
 
 updatePost(id:string,title:string,content:string,image: File | string){
@@ -105,7 +108,7 @@ else{
     creator:null
   };
 }
-this.http.put('http://localhost:3000/api/posts/'+id,postData).subscribe((response)=>{
+this.http.put(BACKEND_URL+"/"+id,postData).subscribe((response)=>{
 
 this.router.navigate(["./"])
 
