@@ -1,15 +1,80 @@
-ul{
+ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-a{
+
+a {
     text-decoration: none;
     color: white;
 }
-.spacer{
+
+.spacer {
     flex: 1 1 auto;
 }
-ul{
+
+ul {
     display: flex;
+}
+
+@media only screen and (width: 375px) {
+    mat-toolbar ul li a,
+    button {
+        font-size: 18px !important;
+    }
+}
+
+@media only screen and (width: 414px) {
+    mat-toolbar ul li a,
+    button {
+        font-size: 18px !important;
+    }
+}
+
+@media only screen and (width: 411px) {
+    mat-toolbar ul li a,
+    button {
+        font-size: 18px !important;
+    }
+}
+
+@media only screen and (width: 768px) {
+    mat-toolbar ul li a,
+    button {
+        font-size: 25px !important;
+    }
+}
+
+@media only screen and (width: 1024px) {
+    mat-toolbar ul li a,
+    button {
+        font-size: 32px !important;
+    }
+}
+
+@media only screen and (width: 320px) {
+    mat-toolbar ul li a,
+    button {
+        font-size: 18px !important;
+    }
+}
+
+@media only screen and (width: 360px) {
+    mat-toolbar ul li a,
+    button {
+        font-size: 18px !important;
+    }
+}
+
+@media only screen and (width: 280px) {
+    mat-toolbar ul li a {
+        font-size: 15px !important;
+    }
+}
+
+@media only screen and (width: 540px) {
+    mat-toolbar ul li a,
+    button {
+        font-size: 25px !important;
+    }
 }

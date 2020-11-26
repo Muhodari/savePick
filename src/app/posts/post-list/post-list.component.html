@@ -4,18 +4,18 @@
 
 
     <mat-card class="imageCard" *ngFor="let post of posts">
-        <h3> {{ post.title }}</h3>
+        <p> {{ post.title }}</p>
 
 
         <div class="image-container">
-            <a download="fffffffffff-1606283417352.jpeg" href="../../../../backend//images/fffffffffff-1606283417352.jpeg">
-                <img [src]="post.imagePath" [alt]="post.title" srcset=""> downlod
-            </a>
+
+            <img [src]="post.imagePath" [alt]="post.title" srcset="">
+
 
         </div>
         <p>{{ post.content }}</p>
         <mat-action-row *ngIf="userIsAuthanticated && userId==post.creator">
-            <a mat-button color="primary" [routerLink]="['/edit',post.id]">Download</a>
+            <button mat-button color="primary" [routerLink]="['/edit',post.id]">Download</button>
             <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>
         </mat-action-row>
     </mat-card>
