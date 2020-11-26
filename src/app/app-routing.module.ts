@@ -8,7 +8,7 @@ import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
  
-  {path:"",component:PostListComponent},
+  {path:"photos",component:PostListComponent},
   {path:"create",component:PostCreateComponent,canActivate:[AuthGuard]},
   {path:"edit/:postId",component:PostCreateComponent,canActivate:[AuthGuard]},
   {path:"auth",loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)}

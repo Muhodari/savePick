@@ -17,7 +17,9 @@ exports.createPost = (req, res, next) => {
             }
         });
     }).catch(error => {
-        res.status(500).json({ message: "creating a post failed" })
+        res.status(500).json({
+            message: "creating a post failed"
+        })
     });
 }
 
@@ -38,16 +40,25 @@ exports.updatePost = (req, res, next) => {
     })
 
 
-    Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post).then(result => {
+    Post.updateOne({
+        _id: req.params.id,
+        creator: req.userData.userId
+    }, post).then(result => {
 
         if (result.n > 0) {
-            res.status(200).json({ message: "post updated successfuly" });
+            res.status(200).json({
+                message: "post updated successfuly"
+            });
         } else {
-            res.status(401).json({ message: "not Authorized" });
+            res.status(401).json({
+                message: "not Authorized"
+            });
         }
     }).catch(error => {
 
-        res.status(500).json({ message: "updating post failed" })
+        res.status(500).json({
+            message: "updating post failed"
+        })
     });
 }
 
@@ -55,7 +66,7 @@ exports.getPosts = (req, res, next) => {
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
     let fetchedPosts;
-    const postQuery = Post.find();
+    const postQuery = Post.find({ creator: req.userData.userId });
 
     if (pageSize && currentPage) {
         postQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
@@ -73,32 +84,48 @@ exports.getPosts = (req, res, next) => {
         })
         .catch(error => {
 
-            res.status(500).json({ message: "fetching posts failed" })
+            res.status(500).json({
+                message: "fetching posts failed"
+            })
         })
 }
 
 // post at given id
 exports.getPost = (req, res, next) => {
-    Post.findById(req.params.id).then(post => {
-            if (post) {} else {
-                res.status(404).json({ message: " post not found!" })
-            }
-        })
-        .catch(error => {
-            res.status(500).json({ message: "fetching post failed" })
+    try {
+
+        Post.find({
+            creator: req.params.id
+        }).then(post => {
+            console.log(post)
+            return res.send(post)
         });
+    } catch (error) {
+        console.log("error ngiyi : ", error)
+        res.send(error.toString())
+    }
+
 }
 
 
 exports.deletePost = (req, res, next) => {
-    Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(result => {
+    Post.deleteOne({
+        _id: req.params.id,
+        creator: req.userData.userId
+    }).then(result => {
         if (result.n > 0) {
-            res.status(200).json({ message: "post deleted successfuly" });
+            res.status(200).json({
+                message: "post deleted successfuly"
+            });
         } else {
-            res.status(401).json({ message: "not Authorized" });
+            res.status(401).json({
+                message: "not Authorized"
+            });
         }
     }).catch(error => {
 
-        res.status(500).json({ message: "deleting post failed" })
+        res.status(500).json({
+            message: "deleting post failed"
+        })
     })
 }

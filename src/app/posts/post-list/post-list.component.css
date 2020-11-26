@@ -1,23 +1,30 @@
 :host {
-  display: block;
-  margin-top: 1rem;
+    display: block;
+    margin-top: 1rem;
 }
 
 .info-text {
-  text-align: center;
-}
-mat-spinner{
-  margin: auto;
+    text-align: center;
 }
 
-.image-container{
-  width: 100%;
-}
-.image-container img{
-  width: 100%;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0,0.5)
+mat-spinner {
+    margin: auto;
 }
 
-mat-paginator{
-  margin-top: 1rem;
+.image-container {
+    width: 100%;
+}
+
+.image-container img {
+    width: 100%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5)
+}
+
+mat-paginator {
+    margin-top: 1rem;
+}
+
+.imageCard {
+    width: 30%;
+    display: inline-block;
 }

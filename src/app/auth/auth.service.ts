@@ -65,7 +65,7 @@ if(token){
  console.log(expirationDate);
 
 this.SaveAuthData(token,expirationDate,this.userId);
-this.router.navigate(['/']);
+this.router.navigate(['/photos']);
 }
 },error=>{
 

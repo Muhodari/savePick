@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <span><a routerLink="/">MyMessages</a></span>
+    <span *ngIf="userIsAuthenticated"><a routerLink="/">Photoes</a></span>
 
     <span class="spacer"></span>
 

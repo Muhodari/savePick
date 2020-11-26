@@ -5,6 +5,7 @@ import { Post } from './post.model';
 import {map} from 'rxjs/operators'
 import { Router } from '@angular/router';
 import {environment} from '../../environments/environment';
+import { AuthService } from '../auth/auth.service';
 
 
 const BACKEND_URL=environment.apiUrl+"/posts";
@@ -18,9 +19,10 @@ export class PostsService {
 
 
 
-constructor(private http:HttpClient,private router:Router){}
+constructor(private http:HttpClient,private router:Router,private authService:AuthService){}
 
   getPosts(postsPerPage:number,currentPage:number) {
+
     const queryParams=`?pagesize=${postsPerPage}&page=${currentPage}`;
    this.http.get<{message:string,posts:any,maxPosts:number}>(BACKEND_URL+queryParams)
    .pipe(map((postData)=>{
@@ -77,7 +79,7 @@ getPost(id:string){
       imagePath:responseData.post.imagePath,
       creator:null
       }
-      this.router.navigate(["./"])
+      this.router.navigate(["./photos"])
     }
 
     );
