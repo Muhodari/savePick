@@ -17,8 +17,6 @@ export class PostsService {
 
   private postsUpdated = new Subject<{posts:Post[],postCount:number}>();
 
-
-
 constructor(private http:HttpClient,private router:Router,private authService:AuthService){}
 
   getPosts(postsPerPage:number,currentPage:number) {
@@ -99,7 +97,6 @@ if(typeof image === "object"){
  postData.append("title",title);
  postData.append("content",content);
  postData.append("image",image,title);
-
 }
 else{
    postData={
@@ -116,6 +113,4 @@ this.router.navigate(["./"])
 
 })
 }
-
-
 }
