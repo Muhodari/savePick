@@ -4,10 +4,11 @@ import {PostCreateComponent} from './posts/post-create/post-create.component';
 import {PostListComponent} from './posts/post-list/post-list.component';
 
 import { AuthGuard } from './auth/auth.guard';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
- 
+  {path:"",component:HomeComponent},
   {path:"photos",component:PostListComponent},
   {path:"create",component:PostCreateComponent,canActivate:[AuthGuard]},
   {path:"edit/:postId",component:PostCreateComponent,canActivate:[AuthGuard]},
