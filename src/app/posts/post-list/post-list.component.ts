@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
-
+import { saveAs } from 'file-saver'
 import { Post } from "../post.model";
 import { PostsService } from "../posts.service";
 
@@ -56,6 +56,15 @@ this.postsService.deletePost(postId).subscribe(()=>{
 })
 }
 
+
+onDownload(filename:string){
+  this.postsService.downloadPost(filename) .subscribe(post=>{
+    saveAs(post,filename);
+ },error=>{
+   console.log(error);
+ })
+    }
+
   onChangedPage(pageData:PageEvent){
     this.isLoading=true;
     this.currentPage=pageData.pageIndex+1;
@@ -70,5 +79,6 @@ this.postsService.deletePost(postId).subscribe(()=>{
   }
 
 
+  
 
 }

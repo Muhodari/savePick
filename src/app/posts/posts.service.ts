@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { from, Subject } from 'rxjs';
 import { Post } from './post.model';
@@ -83,6 +83,20 @@ getPost(id:string){
     );
    
   }
+
+
+// download post 
+downloadPost(filename:string){
+
+ // getting image name from url
+  const url =filename
+  const imageName= url.substring(url.lastIndexOf('/') + 1);
+   return this.http.get("http://localhost:3000/api/posts/file/"+imageName,{
+     responseType:'blob',
+     headers:new HttpHeaders().append('content-Type','application/json')
+    }
+   )
+}
 
 //  delete request
 deletePost(postId:string){

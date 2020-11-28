@@ -1,4 +1,11 @@
 const Post = require("../models/post");
+const fs = require('fs');
+const fetch = require('node-fetch');
+const path = require('path');
+
+// var http = require('http');
+// var fs = require('fs');
+
 
 exports.createPost = (req, res, next) => {
     const url = req.protocol + '://' + req.get("host");
@@ -21,6 +28,17 @@ exports.createPost = (req, res, next) => {
             message: "creating a post failed"
         })
     });
+}
+
+//  download function
+
+
+
+exports.downloadPost = async function(req, res, next) {
+
+    const filePath = path.join(__dirname, '../images/' + req.params.filePath);
+    console.log(filePath);
+    res.status(200).sendFile(filePath);
 }
 
 // update user
