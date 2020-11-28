@@ -9,7 +9,7 @@
 
         <div>
             <button mat-stroked-button type="button" (click)="filePicker.click()"> pick image</button>
-            <input type="file" #filePicker (change)="onImagePicked($event)">
+            <input type="file" #filePicker (change)="onImagePicked($event)" multiple>
         </div>
 
         <!-- image preview -->

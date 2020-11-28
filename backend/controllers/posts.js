@@ -8,6 +8,7 @@ const path = require('path');
 
 
 exports.createPost = (req, res, next) => {
+    console.log(req.file.filename);
     const url = req.protocol + '://' + req.get("host");
     const post = new Post({
         title: req.body.title,

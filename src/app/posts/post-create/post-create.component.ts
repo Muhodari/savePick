@@ -23,9 +23,9 @@ export class PostCreateComponent implements OnInit,OnDestroy {
   private postId:string;
   imagePreview:string;
   private authStastusSubs:Subscription;
+  images = [];
   
   
-
   constructor(public postsService: PostsService,public route:ActivatedRoute,private authService:AuthService) {}
 
 ngOnInit(){
@@ -39,6 +39,7 @@ ngOnInit(){
    content:new FormControl(null,{validators:[Validators.required]}),
    image:new FormControl(null,{validators:[Validators.required],asyncValidators:[mimeType]})
    })
+
 
   this.route.paramMap.subscribe((paramMap:ParamMap)=>{
   if(paramMap.has('postId')){
@@ -69,6 +70,7 @@ else{
 }
     })
   }
+
 
 onImagePicked(event:Event){
 const file=(event.target as HTMLInputElement).files[0];
