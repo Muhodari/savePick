@@ -18,7 +18,7 @@ exports.createUser = (req, res, next) => {
         }).catch(err => {
             res.status(500).json({
 
-                message: "!invalid authentication credentials"
+                message: "!email has already used"
 
             })
         })
@@ -40,7 +40,7 @@ exports.userLogin = (req, res, next) => {
         })
         .then(result => {
             if (!result) {
-                return res.status(401).json({ message: "user not found" });
+                return res.status(401).json({ message: "Invalid user Credentials" });
 
             }
             const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id },
