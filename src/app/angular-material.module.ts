@@ -7,6 +7,8 @@ import {  MatExpansionModule} from "@angular/material/expansion";
 import{MatPaginatorModule} from '@angular/material/paginator';
 import{MatDialogModule} from "@angular/material/dialog"
 import{MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import {MatSliderModule} from '@angular/material/slider'
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 @NgModule({
 imports:[
@@ -17,7 +19,8 @@ imports:[
     MatExpansionModule,
     MatProgressSpinnerModule ,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCarouselModule
 ],
 exports:[
     MatInputModule,
@@ -27,7 +30,8 @@ exports:[
     MatExpansionModule,
     MatProgressSpinnerModule ,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCarouselModule
 ]
 })
 

@@ -3,8 +3,8 @@
 
     <form [formGroup]="form" (submit)="onSavePost()" *ngIf="!isLoading">
         <mat-form-field>
-            <input matInput type="text" name="title" formControlName="title" placeholder="title">
-            <mat-error *ngIf="form.get('title').invalid">Please enter a post title.</mat-error>
+            <input matInput type="text" name="title" formControlName="title" placeholder="photo's name" required>
+            <mat-error *ngIf="form.get('title').invalid">Please a photo name</mat-error>
         </mat-form-field>
 
         <div>
@@ -19,11 +19,11 @@
 
 
         <mat-form-field>
-            <textarea matInput rows="4" name="content" placeholder="Post Content" formControlName="content"></textarea>
+            <textarea matInput rows="4" name="content" placeholder="Small discription" formControlName="content"></textarea>
             <mat-error *ngIf="form.get('content').invalid">Please enter a post content.</mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="accent" type="submit">Save Post
+        <button mat-raised-button color="accent" type="submit">Save Image
     </button>
 
     </form>

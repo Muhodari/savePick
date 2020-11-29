@@ -1,11 +1,12 @@
 <mat-toolbar color="primary">
     <span *ngIf="userIsAuthenticated"><a routerLink="/photos">Photoes</a></span>
+    <span *ngIf="!userIsAuthenticated"><a routerLink="">HOME</a></span>
 
     <span class="spacer"></span>
 
     <ul>
         <li *ngIf="userIsAuthenticated">
-            <a mat-button routerLink="/create" routerLinkActive="mat-accent ">New post</a>
+            <a mat-button routerLink="/create" routerLinkActive="mat-accent ">upload Photo</a>
         </li>
 
         <li *ngIf="!userIsAuthenticated">
